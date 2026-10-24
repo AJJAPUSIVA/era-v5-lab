@@ -1,0 +1,101 @@
+name: pr-guard
+
+# Checks every pull request against the lab folder rules. It reads the PR through the API
+# and never checks out or runs the PR code, so pull_request_target is safe here.
+on:
+  pull_request_target:
+    types: [opened, edited, synchronize, reopened]
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  guard:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/github-script@v7
+        with:
+          script: |
+            const TEAMS = ["01-data-a","02-data-b","03-tokenizer","04-ke2","05-architecture","06-performance",
+              "07-infrastructure","08-monitoring","09-evaluation","10-post-training","11-release","12-quantization"];
+            const PACKS = ["cadj-commits","cadj-notebooks","cadj-stackexchange","code-cpp","code-go","code-java",
+              "code-js-ts","code-python","code-rust","en-dclm","en-fineweb-edu","en-nemotroncc","en-nemotroncc-synth",
+              "ind-bn-fw2","ind-bn-sangraha-v","ind-gu-fw2","ind-hi-fw2","ind-hi-hplt","ind-hi-indiccorp",
+              "ind-hi-sangraha-s","ind-hi-sangraha-v","ind-kn-fw2","ind-kn-sangraha-s","ind-kn-sangraha-v","ind-ml-fw2",
+              "ind-mr-fw2","ind-mr-sangraha-v","ind-or-fw2","ind-sa-fw2","ind-ta-fw2","ind-ta-sangraha-s",
+              "ind-ta-sangraha-v","ind-te-fw2","ind-te-sangraha-s","ind-te-sangraha-v","math-finemath","math-megamath",
+              "sci-finepdfs"];
+            const DIAG_FILES = ["labels.csv", "medicine.md"];
+            const MAX_BYTES = 5 * 1024 * 1024;
+            const pr = context.payload.pull_request;
+            const author = pr.user.login.toLowerCase();
+            const staff = ["theschoolofai"];
+            const problems = [];
+            let isDiag = false;
+
+            const files = await github.paginate(github.rest.pulls.listFiles,
+              { owner: context.repo.owner, repo: context.repo.repo, pull_number: pr.number, per_page: 100 });
+
+            const checkPath = (path) => {
+              const p = path.split("/");
+              if (p[0] === "diagnosis" && p[1] === "submissions") {
+                isDiag = true;
+                if (p.length !== 5) return `\`${path}\`: use diagnosis/submissions/<pack_id>/<your-github-handle>/<file>.`;
+                if (!PACKS.includes(p[2])) return `\`${path}\`: \`${p[2]}\` is not a pack ID. Copy it from the CAP plan sheet.`;
+                if (p[3].toLowerCase() !== author) return `\`${path}\`: the folder must be your own GitHub handle \`${pr.user.login}\`.`;
+                if (!DIAG_FILES.includes(p[4])) return `\`${path}\`: only labels.csv and medicine.md go in your folder.`;
+                return null;
+              }
+              if (p[0] === "teams") {
+                if (!TEAMS.includes(p[1])) return `\`${path}\`: \`teams/${p[1]}\` is not a team folder. Use one of the 12 existing folders.`;
+                if (p.length === 3 && p[2] === "README.md") return null;
+                if (p.length < 4) return `\`${path}\`: put files in a topic folder, for example teams/${p[1]}/<topic>/<file>.`;
+                return null;
+              }
+              if (staff.includes(author)) return null;
+              return `\`${path}\`: students may change only diagnosis/submissions/<pack_id>/<handle>/ and teams/<NN>-<name>/.`;
+            };
+
+            const SECRET = [
+              [/AKIA[0-9A-Z]{16}/, "an AWS key"], [/-----BEGIN [A-Z ]*PRIVATE KEY-----/, "a private key"],
+              [/gh[pousr]_[A-Za-z0-9]{30,}/, "a GitHub token"], [/\bsk-[A-Za-z0-9_-]{20,}/, "an API key"],
+              [/xox[baprs]-[A-Za-z0-9-]{10,}/, "a Slack token"],
+              [/[A-Za-z0-9._%+-]+@(?!users\.noreply\.github\.com|example\.(com|org))[A-Za-z0-9.-]+\.[A-Za-z]{2,}/, "an email address"]];
+
+            for (const f of files) {
+              for (const path of [f.filename, f.previous_filename].filter(Boolean)) {
+                const why = checkPath(path); if (why) problems.push(why);
+              }
+              if (/\.(parquet|arrow|zst|gz|zip|tar|bin|pt|safetensors)$/i.test(f.filename))
+                problems.push(`\`${f.filename}\`: do not add data, model or archive files.`);
+              if (f.status !== "removed") {
+                try {
+                  const { data } = await github.rest.repos.getContent({ owner: pr.head.repo.owner.login,
+                    repo: pr.head.repo.name, path: f.filename, ref: pr.head.sha });
+                  if (data.size > MAX_BYTES) problems.push(`\`${f.filename}\`: the file is larger than 5 MB.`);
+                } catch (e) { /* size check skipped */ }
+              }
+              const added = (f.patch || "").split("\n").filter(l => l.startsWith("+")).join("\n");
+              for (const [re, what] of SECRET)
+                if (re.test(added)) problems.push(`\`${f.filename}\`: it seems to contain ${what}. Never copy personal data or secrets. Give only the type and the offset.`);
+            }
+
+            if (isDiag) {
+              const head = (pr.body || "").split("\n").slice(0, 8).join("\n");
+              for (const key of ["Name:", "Axiom email:", "Pack:"])
+                if (!head.includes(key)) problems.push(`The pull request description must start with the line \`${key} ...\`.`);
+            }
+
+            const uniq = [...new Set(problems)];
+            const marker = "<!-- pr-guard -->";
+            const body = uniq.length
+              ? `${marker}\n**pr-guard: please fix these items, then push again or edit the description.**\n\n` +
+                uniq.map(x => `- ${x}`).join("\n") + `\n\nThe rules are in \`diagnosis/submissions/README.md\`.`
+              : `${marker}\n**pr-guard: all checks pass.**`;
+            const comments = await github.paginate(github.rest.issues.listComments,
+              { owner: context.repo.owner, repo: context.repo.repo, issue_number: pr.number });
+            const old = comments.find(c => c.body && c.body.startsWith(marker));
+            if (old) await github.rest.issues.updateComment({ owner: context.repo.owner, repo: context.repo.repo, comment_id: old.id, body });
+            else await github.rest.issues.createComment({ owner: context.repo.owner, repo: context.repo.repo, issue_number: pr.number, body });
+            if (uniq.length) core.setFailed(`${uniq.length} problem(s) found.`);
