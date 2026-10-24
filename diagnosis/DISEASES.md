@@ -89,6 +89,12 @@ as plain text.
 | H2 | Near duplicate | the same text with small changes |
 | H3 | The same content in another source or language | a translation of a document that you saw in English |
 
+## 2a. Never copy personal data or secrets
+
+The lab repository is public. For **F1 (personal data)** and **E3 (secrets)**, the `evidence` column gives only the
+type and the position, for example `email at offset 64` or `AWS key at offset 2210`. **Never copy the value itself**
+into any file, pull request or chat message. Leave the `hex` column empty for F1 and E3.
+
 ## 3. The label sheet
 
 One row for each document that you read. Use the template file `labels_<slice_id>.csv`.
