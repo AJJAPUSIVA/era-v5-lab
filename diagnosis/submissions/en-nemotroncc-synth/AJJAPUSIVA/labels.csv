@@ -1,0 +1,151 @@
+﻿doc_id,read,verdict,diseases,evidence,hex,note
+47f4f5107ac9aece,full,clean,,,,Keep original; no confirmed operation
+895afca58ce2cefe,full,clean,,,,Keep original; no confirmed operation
+562f021c93e0afff,full,clean,,,,Keep original; no confirmed operation
+172f18eaff040ba8,full,clean,,,,Keep original; no confirmed operation
+536547e07d7d65ca,full,clean,,,,Keep original; no confirmed operation
+b61af635990f9049,full,clean,,,,Keep original; no confirmed operation
+d1d5d2985cc180f1,full,clean,,,,Keep original; no confirmed operation
+4ea53398efe98f77,full,clean,,,,Keep original; no confirmed operation
+9080e92129e39a4b,full,clean,,,,Keep original; no confirmed operation
+15a4fb4cff0c6d9f,full,clean,,,,Keep original; no confirmed operation
+e44e36f097d418e2,full,clean,,,,Keep original; no confirmed operation
+6c12633fa1c87476,full,clean,,,,Keep original; no confirmed operation
+8c61d888ae3ecc82,full,clean,,,,Keep original; no confirmed operation
+aa19436af952027d,full,clean,,,,Keep original; no confirmed operation
+a9c8f8d69278c340,full,clean,,,,Keep original; no confirmed operation
+a14eaa5e58baf3c3,full,fix,C4,"Topic shifts at offsets 188, 338, 409 (0-based): Australian languages; English law; Celtic languages",,User-approved manual split into 4 topic blocks; exact text preserved; gold-set harm test pending
+fa6afecb771ef379,full,clean,,,,Keep original; no confirmed operation
+d0ac3840067065e2,full,clean,,,,Keep original; no confirmed operation
+b7af5a6d5f9ca215,full,clean,,,,Keep original; no confirmed operation
+56fc241d50f076d1,full,clean,,,,Keep original; no confirmed operation
+cc22d0d6c3980f02,full,clean,,,,Keep original; no confirmed operation
+67cd7f8dca56480d,full,drop,F3,,,Drop confirmed by reviewer
+7e2cbd39bf39635f,full,clean,,,,Keep original; no confirmed operation
+cf595aa5834926c1,full,clean,,,,Keep original; no confirmed operation
+46f63da3bcdf5bfd,full,clean,,,,Keep original; no confirmed operation
+2fd52e500f3906a8,full,clean,,,,Keep original; no confirmed operation
+1a8278f7e2f38b30,full,clean,,,,Keep original; no confirmed operation
+b2d5e05866717162,full,clean,,,,Keep original; no confirmed operation
+7d8aeed60857a08f,full,clean,,,,Keep original; no confirmed operation
+b59b082d3aeee55b,full,clean,,,,Keep original; no confirmed operation
+bccde4cc75b5d4bf,full,clean,,,,Keep original; no confirmed operation
+1bff2dac9a68d6d6,full,clean,,,,Keep original; no confirmed operation
+d25261e9b946c8e2,full,clean,,,,Keep original; no confirmed operation
+5958fb6996158153,full,fix,C4,"Paragraph topic shifts at offsets 386, 689, 897, 1270 (0-based): disruptive tech; military/mobile; AI; Digi.me",,User-approved manual split into 5 topic blocks; exact text preserved; gold-set harm test pending
+103c5e0f8dcf2438,full,clean,,,,Keep original; no confirmed operation
+a39b27db288c9678,full,clean,,,,Keep original; no confirmed operation
+bfdc0365ce5dd658,full,clean,,,,Keep original; no confirmed operation
+23aad30125942d34,full,clean,,,,Keep original; no confirmed operation
+0e9effc1e24eb8a3,full,clean,,,,Keep original; no confirmed operation
+3321b9d7c2a222fa,full,clean,,,,Keep original; no confirmed operation
+ad299e8f84817c25,full,clean,,,,Keep original; no confirmed operation
+53508187f63c2245,full,clean,,,,Keep original; no confirmed operation
+95e868bc084be9aa,full,clean,,,,Keep original; no confirmed operation
+6df2adf3adc73b95,full,clean,,,,Keep original; no confirmed operation
+41b7fef27ec5d75e,full,clean,,,,Keep original; no confirmed operation
+6a85f5a63d4638f5,full,clean,,,,Keep original; no confirmed operation
+ce588dd22c695f2e,full,clean,,,,Keep original; no confirmed operation
+10815a366aa46e37,full,clean,,,,Keep original; no confirmed operation
+63a68777f694ad3f,full,clean,,,,Keep original; no confirmed operation
+4ca107862df597a4,full,clean,,,,Keep original; no confirmed operation
+79e696845c77d289,full,clean,,,,Keep original; no confirmed operation
+79b5260a7d74cd8e,full,clean,,,,Keep original; no confirmed operation
+3fd855d8c8a13d54,full,clean,,,,Keep original; no confirmed operation
+60819f2d8e834926,full,clean,,,,Keep original; no confirmed operation
+9d8ccfdcb4c37dec,full,clean,,,,Keep original; no confirmed operation
+8f566b048a22eb74,full,clean,,,,Keep original; no confirmed operation
+c73473a6a7502da6,full,clean,,,,Keep original; no confirmed operation
+157d5da1961914c1,full,clean,,,,Keep original; no confirmed operation
+38e9b59a8fd4b482,full,clean,,,,Keep original; no confirmed operation
+3e3c925d4a8f6675,full,clean,,,,Keep original; no confirmed operation
+3ee5b2ff58144bc0,full,clean,,,,Keep original; no confirmed operation
+6dcd86a23bac8daf,full,clean,,,,Keep original; no confirmed operation
+67397e0b95bfaf2c,full,clean,,,,Keep original; no confirmed operation
+96054cc3c489180e,full,clean,,,,Keep original; no confirmed operation
+6a1669b711d6eee2,full,clean,,,,Keep original; no confirmed operation
+6d8dc4a55d6381b1,full,clean,,,,Keep original; no confirmed operation
+0c0f434e92dcc193,full,clean,,,,Keep original; no confirmed operation
+b3f5a2eef773ccce,full,clean,,,,Keep original; no confirmed operation
+fc5520f8d6df85e2,full,clean,,,,Keep original; no confirmed operation
+d4e55ea24609e95c,full,clean,,,,Keep original; no confirmed operation
+4c76ca8ecb430bd1,full,clean,,,,Keep original; no confirmed operation
+64064e69d76186e5,full,clean,,,,Keep original; no confirmed operation
+69977c18d99f8030,full,clean,,,,Keep original; no confirmed operation
+973305d6a92f08aa,full,clean,,,,Keep original; no confirmed operation
+60f1a32f80f6a3cf,full,fix,C3,Promises 15 films but numbered list ends at 11; row 76 has overlapping Moonstruck and four more films,,User-approved join 75+76; retain both Moonstruck descriptions; number remaining films 12-15; harm test pending
+ab4f03c12b813b47,full,fix,C3,Starts with Moonstruck overlap; four subsequent films complete row 75 list; C3 provisional,,User-approved join 75+76; retain both Moonstruck descriptions; number remaining films 12-15; harm test pending
+ededb27532326908,full,clean,,,,Keep original; no confirmed operation
+47914b68d81e0b64,full,clean,,,,Keep original; no confirmed operation
+0c94135752170184,full,clean,,,,Keep original; no confirmed operation
+7054eafdfc65e2e5,full,clean,,,,Keep original; no confirmed operation
+d2fb665c40af5edb,full,fix,B4,-DATE- placeholder at offset 326 (0-based) in billing explanation,,Replace -DATE- with the Due Date in heading; no calendar date invented; gold-set harm test pending
+f15a220dd8190f9a,full,clean,,,,Keep original; no confirmed operation
+e97041e2ae2cef23,full,clean,,,,Keep original; no confirmed operation
+3a1b7bc567894c25,full,clean,,,,Keep original; no confirmed operation
+2293b405885fb579,full,clean,,,,Keep original; no confirmed operation
+cb8efd01fd8ed20f,full,clean,,,,Keep original; no confirmed operation
+6982fc5710d9b0dc,full,clean,,,,Keep original; no confirmed operation
+60bc50a100834050,full,clean,,,,Keep original; no confirmed operation
+002367aef34fac29,full,clean,,,,Keep original; no confirmed operation
+7ef718fad2d3d647,full,clean,,,,Keep original; no confirmed operation
+0e569dab6c127f5d,full,clean,,,,Keep original; no confirmed operation
+b910a3c574ca29e5,full,clean,,,,Keep original; no confirmed operation
+43dcf8695a10c68e,full,clean,,,,Keep original; no confirmed operation
+f212faef354ad721,full,clean,,,,Keep original; no confirmed operation
+b63a5e89acfb14e3,full,fix,B,,,Exact text-level edit in manifest
+17348648accb2ce6,full,clean,,,,Keep original; no confirmed operation
+d096a0402bb49b08,full,clean,,,,Keep original; no confirmed operation
+5bd95ff4b60d75a3,full,clean,,,,Keep original; no confirmed operation
+5d4984c5c55a8dd5,full,clean,,,,Keep original; no confirmed operation
+2a0b3e090dbd0e7b,full,clean,,,,Keep original; no confirmed operation
+a7e77ee57791124b,full,fix,,,,"Approved join: 101,102"
+ef65e5b6d0cda5a5,full,fix,,,,"Approved join: 101,102"
+858007598af05807,full,clean,,,,Keep original; no confirmed operation
+234b50b1bc3b66bf,full,clean,,,,Keep original; no confirmed operation
+60c209725fbd9ebc,full,clean,,,,Keep original; no confirmed operation
+4e2f19fcec08d62f,full,clean,,,,Keep original; no confirmed operation
+a98762cf726cc838,full,clean,,,,Keep original; no confirmed operation
+91f6fa0c1ff437f8,full,clean,,,,Keep original; no confirmed operation
+d896f8ca6a2beae1,full,fix,C3,Article/Q&A boundary at offset 3230 (0-based); heading precedes Q&A; C3 provisional,,User-approved body join 109+110; Q&A retained separately; missing list unresolved; gold-set harm test pending
+fdd2b470571c5e4d,full,fix,C3,Article/Q&A boundary at offset 1536 (0-based); article ends with such as: before Q&A; missing list unresolved,,User-approved body join 109+110; Q&A retained separately; missing list unresolved; gold-set harm test pending
+3cd12d535137ab2f,full,fix,C1,,,Exact text-level edit in manifest
+701cacaccdb06931,full,fix,C1,,,Exact text-level edit in manifest
+f27860217811cf33,full,drop,C5,,,Drop confirmed by reviewer
+18e539a751c5a4b3,full,fix,,,,"Approved join: 114,115"
+593cf027a182e228,full,fix,,,,"Approved join: 114,115"
+affc40538cb81c3e,full,fix,,,,"Approved join: 116,117"
+f7cc74aa2a292910,full,fix,,,,"Approved join: 116,117"
+e0cd184d7215f188,full,clean,,,,Keep original; no confirmed operation
+0ca7bce7da41acbb,full,fix,,,,"Approved join: 119,120"
+76b4036d49000599,full,fix,,,,"Approved join: 119,120"
+930ac17ff7477fe3,full,fix,C3,,,"Approved join: 121,122,123"
+006973886899c770,full,fix,C3,,,"Approved join: 121,122,123"
+ff83c5492bf664a8,full,fix,C3,,,"Approved join: 121,122,123"
+ce52c449f250761e,full,drop,C5 C1,,,Drop confirmed by reviewer
+6cd78f812660687b,full,fix,C4,New question starts at char 1650,,Split into Infiniti discussion and S-10 question
+d7b99c1b508bc9a9,full,clean,,,,Keep original; no confirmed operation
+72221c8db470aabe,full,clean,,,,Keep original; no confirmed operation
+2238fde9ba724afc,full,clean,,,,Keep original; no confirmed operation
+8dbfc3a780549e3e,full,clean,,,,Keep original; no confirmed operation
+b876745af3ee971b,full,clean,,,,Keep original; no confirmed operation
+88918599865e0040,full,clean,,,,Keep original; no confirmed operation
+fa5cb262ff657b64,full,clean,,,,Keep original; no confirmed operation
+03bd5799abaf729b,full,clean,,,,Keep original; no confirmed operation
+11447dec091c0569,full,clean,,,,Keep original; no confirmed operation
+6a67d2deb1ffa13d,full,clean,,,,Keep original; no confirmed operation
+c496ad97535a3a10,full,clean,,,,Keep original; no confirmed operation
+49f5a46f940eb5cb,full,clean,,,,Keep original; no confirmed operation
+6a9df91ed20c63ed,full,clean,,,,Keep original; no confirmed operation
+7c1029be9e3e7d39,full,clean,,,,Keep original; no confirmed operation
+8aa48962986d862a,full,clean,,,,Keep original; no confirmed operation
+ccc103cc511966af,full,clean,,,,Keep original; no confirmed operation
+a147d6925833c136,full,fix,C3,,,"Approved join: 142,143"
+fe0100ca641983cc,full,fix,C3,,,"Approved join: 142,143"
+af171f278bdb100a,full,clean,,,,Keep original; no confirmed operation
+c3a94ba4bda8914c,full,clean,,,,Keep original; no confirmed operation
+dac8666f4d09503c,full,clean,,,,Keep original; no confirmed operation
+046472ddb5a971ed,full,clean,,,,Keep original; no confirmed operation
+ea0ecda1c2f25dd1,full,fix,A,,,Exact text-level edit in manifest
+1eb02fd733f174a3,full,clean,,,,Keep original; no confirmed operation
+ee6655c72b3799da,full,clean,,,,Keep original; no confirmed operation
