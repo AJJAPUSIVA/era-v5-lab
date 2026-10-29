@@ -1,3 +1,112 @@
+# Medicine sheet: en-nemotroncc-synth (AJJAPUSIVA)
+
+## Submission status
+
+Spec v1 handoff draft. The current labels cover 150 of 500 documents.
+This revision supplies one runnable candidate medicine for Data A / Data B.
+Gold-set results are pending; no pass or zero-harm result is claimed.
+Final submission deadline: 31 October 2026, 18:00 IST.
+
+The executable candidate below is separate from the historical document-specific
+review notes in the appendix. Those notes are retained for traceability, not
+submitted as independently runnable or validated medicines. Their local
+application and Parquet validation statements are prior review claims and have
+not been rechecked in this revision because the source pack is unavailable here.
+
+## Medicine 1: B4 billing-heading placeholder
+
+1. **Disease:** B4 (template junk in prose). One documented occurrence among
+   the first 150 reviewed documents; this is not a count for the entire pack.
+   Example: `d2fb665c40af5edb`, `-DATE-` at zero-based character offset 326,
+   in `Total Due After -DATE-:`. Only one example is available; two further
+   examples are not invented. This optional initial medicine is below the
+   more-than-five-occurrences threshold for a mandatory medicine section.
+2. **Medicine:** replace the exact heading `Total Due After -DATE-:` with
+   `Total Due After the Due Date:` only when it occurs exactly once.
+   Leave all other text unchanged. The function accepts a text string and
+   returns a text string; it has no document-ID filter, so the same rule can
+   be evaluated on unseen gold documents. It requires only the Python standard
+   library and installs no tools.
+
+```python
+def medicine_b4(text):
+    """Return text with one exact billing-heading placeholder repaired."""
+    old = "Total Due After -DATE-:"
+    new = "Total Due After the Due Date:"
+    if text.count(old) != 1:
+        return text
+    return text.replace(old, new, 1)
+```
+
+3. **Action:** fix text; never drop documents. Do not infer a calendar date.
+   This rule does not repair other placeholders or broken LaTeX.
+4. **Harm test:** pending execution by Data A / Data B on the English gold
+   set using this exact function. Gold-set identifier/version, document count,
+   changed count, dropped count, and pass/fail are all pending. Use the runner
+   below and report its returned counts. More than 1% of gold documents
+   changed or dropped fails. Synthetic checks establish function behavior only.
+5. **Side effects:** the literal heading might be intentional quoted text,
+   documentation of a template, or an actual bill that requires a specific
+   date. The rule cannot distinguish these contexts and may change valid text.
+   Repeated occurrences are deliberately left unchanged for review. A gold-set
+   pass alone does not establish effectiveness on the full dataset.
+
+## Runnable harm-test helper
+
+Execute this block after the medicine block. Data A / Data B supply the actual
+gold texts as an iterable of strings. The helper counts source documents,
+including changes in any position; it does not print source text or identifiers.
+For future medicines, `None` represents a dropped document. This is a local
+handoff interface, not a claim to implement an unavailable spec v1 harness API.
+
+```python
+def harm_test(medicine, gold_texts):
+    total = changed = dropped = 0
+    for text in gold_texts:
+        if not isinstance(text, str):
+            raise TypeError("Gold documents must be text strings")
+        result = medicine(text)
+        if result is not None and not isinstance(result, str):
+            raise TypeError("Medicine must return a text string or None")
+        total += 1
+        if result is None:
+            dropped += 1
+        elif result != text:
+            changed += 1
+    if total == 0:
+        raise ValueError("Gold set must not be empty")
+    affected = changed + dropped
+    return {
+        "gold_documents": total,
+        "changed_documents": changed,
+        "dropped_documents": dropped,
+        "affected_percent": 100 * affected / total,
+        "passes_one_percent_threshold": 100 * affected <= total,
+    }
+```
+
+## Remaining work
+
+- Review documents 151–500; recompute counts by specific disease code.
+- C3 currently appears on nine labelled documents, including provisional
+  diagnoses. Recheck against the repository definition (a sentence or code block
+  cut off), then provide a template-complete medicine if the confirmed count
+  remains above five. Joining arbitrary neighbouring documents is not a
+  general repair for truncation.
+- Obtain exact source evidence for boilerplate removals, LaTeX repairs, and
+  other interventions that currently refer to an unavailable local manifest.
+  These are not executable candidates in this revision.
+- Resolve invalid or absent disease codes and missing evidence in labels.csv.
+  This medicine-only revision does not alter labels or claim to fix them.
+- Record Data A / Data B gold-set results and second-reader review separately.
+  Do not interpret the absence of a supplied gold set as a successful test.
+
+## Appendix: previous document-specific review notes
+
+The following preserves the earlier sheet. Its code fragments require source
+records and manual preconditions; use Medicine 1 above for the initial runnable
+handoff. Missing lists and provisional diagnoses remain unresolved.
+
 # English synthetic Parquet — diagnosis medicine (DRAFT)
 
 ## Scope and method
@@ -111,3 +220,4 @@ joined_body = "\n\n".join(bodies)
 
 ## Reproducibility
 The document-specific code above records the new transformations for rows 16, 34, 75-76, 81, and 109-110. Use the source document IDs and stated offsets or exact markers to reproduce them on the original sample pack. Local review manifests and Parquet derivatives are not part of this submission. The earlier `first150_cleaning_manifest.json` and build script do not include these new transformations. Gold-set harm tests remain pending.
+
